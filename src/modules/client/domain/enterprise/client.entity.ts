@@ -2,7 +2,6 @@ import { Entity, UniqueEntityID } from "libs/core/src/entities";
 import { Optional } from "libs/core/src/types";
 
 interface ClientEntityProps {
-  id: number;
   name: string;
   cpf: string;
   email: string;
