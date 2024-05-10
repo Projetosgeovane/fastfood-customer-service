@@ -68,4 +68,16 @@ export class ClientEntity extends Entity<ClientEntityProps> {
   get deletedAt() {
     return this.props.deletedAt;
   }
+
+  set name(value: string) {
+    this.props.name = value;
+  }
+
+  set email(value: string) {
+    this.props.email = value;
+  }
+
+  set password(value: string) {
+    this.props.password = value;
+  }
 }
