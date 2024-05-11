@@ -1,22 +1,22 @@
 import { Either, failure, success } from "libs/core/src/types";
 import { ClientRepository } from "../../repositories/client.repository";
 import { ResourceNotFoundError } from "libs/core/src/errors";
+import { Injectable } from "@nestjs/common";
 
 interface EditClientUseCaseRequest {
   id: string;
   name: string;
-  email: string;
+  phone: string;
   password: string;
 }
 
 type EditClientUseCaseResponse = Either<ResourceNotFoundError, object>;
-
+@Injectable()
 export class EditClientUseCase {
   constructor(private readonly clientRepository: ClientRepository) { }
 
   async execute({
     id,
-    email,
     name,
     password,
   }: EditClientUseCaseRequest): Promise<EditClientUseCaseResponse> {
@@ -27,7 +27,6 @@ export class EditClientUseCase {
     }
 
     client.name = name;
-    client.email = email;
     client.password = password;
 
     await this.clientRepository.save(client);
