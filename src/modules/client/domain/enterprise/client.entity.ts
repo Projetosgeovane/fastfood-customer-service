@@ -6,9 +6,10 @@ interface ClientEntityProps {
   cpf: string;
   email: string;
   password: string;
+  phone: string;
   status: boolean;
 
-  created_at: Date;
+  createdAt: Date;
   updatedAt?: Date | null;
   deletedAt?: Date | null;
 
@@ -16,7 +17,7 @@ interface ClientEntityProps {
 
 export class ClientEntity extends Entity<ClientEntityProps> {
   static instance(
-    props: Optional<ClientEntityProps, | 'created_at'>,
+    props: Optional<ClientEntityProps, | 'createdAt'>,
     id?: UniqueEntityID,
   ) {
     const client = new ClientEntity(
@@ -25,8 +26,9 @@ export class ClientEntity extends Entity<ClientEntityProps> {
         cpf: props.cpf ?? null,
         email: props.email ?? null,
         password: props.password ?? null,
+        phone: props.phone ?? null,
         status: props.status ?? null,
-        created_at: new Date(),
+        createdAt: new Date(),
         updatedAt: props.updatedAt ?? null,
         deletedAt: props.deletedAt ?? null,
         ...props,
@@ -53,12 +55,16 @@ export class ClientEntity extends Entity<ClientEntityProps> {
     return this.props.password;
   }
 
+  get phone() {
+    return this.props.phone;
+  }
+
   get status() {
     return this.props.status;
   }
 
   get createdAt() {
-    return this.props.created_at;
+    return this.props.createdAt;
   }
 
   get updatedAt() {
@@ -79,5 +85,9 @@ export class ClientEntity extends Entity<ClientEntityProps> {
 
   set password(value: string) {
     this.props.password = value;
+  }
+
+  set phone(value: string) {
+    this.props.phone = value;
   }
 }
