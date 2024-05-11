@@ -1,4 +1,4 @@
-import { Either, success } from "libs/core/src/types";
+import { Either, success } from "@enablers/core/types";
 import { ClientEntity } from "../../../enterprise/client.entity";
 import { ClientRepository } from "../../repositories/client.repository";
 import { Injectable } from "@nestjs/common";

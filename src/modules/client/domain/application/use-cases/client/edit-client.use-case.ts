@@ -1,7 +1,7 @@
-import { Either, failure, success } from "libs/core/src/types";
-import { ClientRepository } from "../../repositories/client.repository";
 import { ResourceNotFoundError } from "libs/core/src/errors";
+import { ClientRepository } from "../../repositories/client.repository";
 import { Injectable } from "@nestjs/common";
+import { Either, failure, success } from "libs/core/src/types";
 
 interface EditClientUseCaseRequest {
   id: string;

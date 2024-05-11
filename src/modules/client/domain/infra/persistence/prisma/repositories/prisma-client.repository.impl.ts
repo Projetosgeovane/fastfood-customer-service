@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { PaginationParams } from "libs/core/src/repositories";
 import { ClientRepository } from "src/modules/client/domain/application/repositories/client.repository";
 import { ClientEntity } from "src/modules/client/domain/enterprise/client.entity";
 import { PrismaClientMapper } from "../../mappers/prisma-client.mapper";
-import { PrismaService } from "src/common/database/prisma/prisma.service";
+import { PrismaService } from "../../../../../../../common/database/prisma/prisma.service";
+import { PaginationParams } from "@enablers/core/repositories";
 
 @Injectable()
 export class PrismaClientRepositoryImpl implements ClientRepository {

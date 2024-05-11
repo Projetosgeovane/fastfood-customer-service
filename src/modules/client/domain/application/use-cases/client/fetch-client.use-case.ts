@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ClientRepository } from "../../repositories/client.repository";
-import { Either, failure, success } from "libs/core/src/types";
 import { ClientEntity } from "../../../enterprise/client.entity";
+import { Either, failure, success } from "@enablers/core/types";
 
 interface FetchClientByIdUseCaseRequest {
   id: string;

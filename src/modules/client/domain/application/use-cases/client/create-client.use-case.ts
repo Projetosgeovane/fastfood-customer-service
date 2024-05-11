@@ -1,8 +1,8 @@
-import { Either, failure, success } from "libs/core/src/types";
+import { ResourceExistsError } from "@enablers/core/errors";
 import { ClientEntity } from "../../../enterprise/client.entity";
-import { ResourceExistsError } from "libs/core/src/errors";
 import { ClientRepository } from "../../repositories/client.repository";
 import { Injectable } from "@nestjs/common";
+import { Either, failure, success } from "@enablers/core/types";
 interface ClientRequest {
   name: string;
   cpf: string;

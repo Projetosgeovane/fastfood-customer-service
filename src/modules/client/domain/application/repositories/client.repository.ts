@@ -1,4 +1,4 @@
-import { BaseRepository } from "libs/core/src/repositories";
+import { BaseRepository } from "@enablers/core/repositories";
 import { ClientEntity } from "../../enterprise/client.entity";
 
 export abstract class ClientRepository extends BaseRepository<ClientEntity> {

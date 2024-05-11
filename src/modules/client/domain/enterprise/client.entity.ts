@@ -1,5 +1,5 @@
-import { Entity, UniqueEntityID } from "libs/core/src/entities";
-import { Optional } from "libs/core/src/types";
+import { Optional } from "@enablers/core/types";
+import { Entity, UniqueEntityID } from "../../../../../libs/core/src/entities";
 
 interface ClientEntityProps {
   name: string;
