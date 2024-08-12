@@ -1,5 +1,5 @@
-import { Optional } from "@enablers/core/types";
-import { Entity, UniqueEntityID } from "../../../../../libs/core/src/entities";
+import { Optional } from '@enablers/core/types';
+import { Entity, UniqueEntityID } from '../../../../../libs/core/src/entities';
 
 interface ClientEntityProps {
   name: string;
@@ -12,12 +12,11 @@ interface ClientEntityProps {
   createdAt: Date;
   updatedAt?: Date | null;
   deletedAt?: Date | null;
-
 }
 
 export class ClientEntity extends Entity<ClientEntityProps> {
   static instance(
-    props: Optional<ClientEntityProps, | 'createdAt'>,
+    props: Optional<ClientEntityProps, 'createdAt'>,
     id?: UniqueEntityID,
   ) {
     const client = new ClientEntity(

@@ -1,9 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { ClientRepository } from "src/modules/client/domain/application/repositories/client.repository";
-import { ClientEntity } from "src/modules/client/domain/enterprise/client.entity";
-import { PrismaClientMapper } from "../../mappers/prisma-client.mapper";
-import { PrismaService } from "../../../../../../../common/database/prisma/prisma.service";
-import { PaginationParams } from "@enablers/core/repositories";
+import { Injectable } from '@nestjs/common';
+import { ClientRepository } from 'src/modules/client/domain/application/repositories/client.repository';
+import { ClientEntity } from 'src/modules/client/domain/enterprise/client.entity';
+import { PrismaClientMapper } from '../../mappers/prisma-client.mapper';
+import { PrismaService } from '../../../../../../../common/database/prisma/prisma.service';
+import { PaginationParams } from '@enablers/core/repositories';
 
 @Injectable()
 export class PrismaClientRepositoryImpl implements ClientRepository {
@@ -13,15 +13,15 @@ export class PrismaClientRepositoryImpl implements ClientRepository {
   async findByName(name: string): Promise<ClientEntity | null> {
     const client = await this.prisma.client.findFirst({
       where: {
-        name
-      }
-    })
+        name,
+      },
+    });
 
     if (!client) {
-      return null
+      return null;
     }
 
-    return PrismaClientMapper.toDomain(client)
+    return PrismaClientMapper.toDomain(client);
   }
 
   async create(data: ClientEntity): Promise<void> {
@@ -29,8 +29,16 @@ export class PrismaClientRepositoryImpl implements ClientRepository {
 
     await this.prisma.client.create({
       data: {
-        ...client
-      }
+        ...client,
+      },
+    });
+  }
+
+  async deleteData(data: any): Promise<void> {
+    await this.prisma.client.create({
+      data: {
+        ...data,
+      },
     });
   }
 
@@ -39,12 +47,12 @@ export class PrismaClientRepositoryImpl implements ClientRepository {
 
     await this.prisma.client.update({
       where: {
-        id: client.id
+        id: client.id,
       },
       data: {
-        ...client
-      }
-    })
+        ...client,
+      },
+    });
   }
 
   async findManyRecent({ page }: PaginationParams): Promise<ClientEntity[]> {
@@ -53,29 +61,31 @@ export class PrismaClientRepositoryImpl implements ClientRepository {
         createdAt: 'desc',
       },
       take: this.PERPAGE,
-      skip: (page - 1) * this.PERPAGE
-    })
+      skip: (page - 1) * this.PERPAGE,
+    });
 
-    return client.map(PrismaClientMapper.toDomain)
+    return client.map(PrismaClientMapper.toDomain);
   }
 
   async findById(id: string): Promise<ClientEntity> {
     const client = await this.prisma.client.findFirst({
       where: {
-        id
-      }
+        id,
+      },
     });
 
     if (!client) {
-      return null
+      return null;
     }
 
-    return PrismaClientMapper.toDomain(client)
+    return PrismaClientMapper.toDomain(client);
   }
+
   delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
+
   softDelete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

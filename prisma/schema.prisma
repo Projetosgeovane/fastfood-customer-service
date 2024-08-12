@@ -9,22 +9,34 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Client {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(uuid())
 
-  name      String
-  cpf       String    @unique
-  email     String    @unique
-  phone     String
-  password  String
-  status    Boolean   @default(true)
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
+  name            String
+  cpf             String            @unique
+  email           String            @unique
+  phone           String
+  password        String
+  status          Boolean           @default(true)
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime?         @updatedAt @map("updated_at")
+  deletedAt       DateTime?         @map("deleted_at")
+  DeletionRequest DeletionRequest[]
 
   @@map("clients")
+}
+
+model DeletionRequest {
+  id        String   @id @default(uuid())
+  clientId  String
+  reason    String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  client Client @relation(fields: [clientId], references: [id])
+
+  @@map("deletion_requests")
 }
